@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/common/navbar.css">
+    <link rel="stylesheet" href="/css/common/footer.css">
+    <link rel="stylesheet" href="/css/common/spinner.css">
+    <link rel="stylesheet" href="/css/shifts/viewEmployeeShifts.css">
+    <title>Employee shifts</title>
+</head>
+<body class="view-shifts-page">
+    {% include "navbar.njk" %}
+
+    <div class="view-shifts-content">
+        <h1 id="employeeTitle" class="view-shifts-title">Employee shifts</h1>
+
+        <div class="view-shifts-sections">
+            <section class="shift-section">
+                <h2>One-time shifts</h2>
+                <ul id="oneTimeList" class="shift-list"></ul>
+                <p id="oneTimeEmpty" class="shift-empty" style="display: none;">No shifts scheduled.</p>
+            </section>
+
+            <section class="shift-section">
+                <h2>Weekly shifts</h2>
+                <ul id="weeklyList" class="shift-list"></ul>
+                <p id="weeklyEmpty" class="shift-empty" style="display: none;">No shifts scheduled.</p>
+            </section>
+        </div>
+    </div>
+
+{% include "footer.njk" %}
+
+    <script src="/javascript/common/jquery-3.7.1.min.js"></script>
+    <script src="/javascript/common/ErrorHandlingHelper.js"></script>
+    <script src="/javascript/common/requestHandler.js"></script>
+    <script src="/javascript/common/navbar.js"></script>
+    <script src="/javascript/shifts/viewEmployeeShifts.js"></script>
+</body>
+</html>

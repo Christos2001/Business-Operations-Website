@@ -1,0 +1,32 @@
+# Secrets
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+
+# Dependencies
+node_modules/
+vendor/
+
+# Eleventy build output
+_site/
+
+# Python
+__pycache__/
+*.pyc
+.Python
+
+# Runtime logs
+logs/*.json
+logs/*.log
+logs/*.tmp
+*.log
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.cursor/
+.idea/
+*.swp
+*.swo

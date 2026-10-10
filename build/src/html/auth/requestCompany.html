@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/common/navbar.css">
+    <link rel="stylesheet" href="/css/common/footer.css">
+    <link rel="stylesheet" href="/css/common/spinner.css">
+    <link rel="stylesheet" href="/css/auth/auth-forms.css">
+    <title>Request company</title>
+</head>
+<body class="auth-page">
+    {% include "auth-navbar.njk" %}
+
+
+    <main class="auth-main">
+        <form action="/php/auth/requestCompany.php" method="POST">
+            <h1>Register your company</h1>
+            <p class="form-intro">Submit your company name and corporate email. You will receive an email with subscription plan assessment instructions. </p>
+            <input type="text" name="companyName" placeholder="Company name" required>
+            <input type="email" name="requesterEmail" placeholder="Email" autocomplete="email" required>
+            <button type="submit">Send request</button>
+        </form>
+    </main>
+
+{% include "footer.njk" %}
+
+    <script src="/javascript/common/ErrorHandlingHelper.js"></script>
+    <script src="/javascript/common/requestHandler.js"></script>
+</body>
+</html>

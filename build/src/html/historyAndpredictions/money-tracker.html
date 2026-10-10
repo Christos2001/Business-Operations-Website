@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/historyAndpredictions/money-tracker.css">
+  <link rel="stylesheet" href="/css/common/navbar.css">
+  <link rel="stylesheet" href="/css/common/footer.css">
+  <link rel="stylesheet" href="/css/common/spinner.css">
+
+  <title>Money Tracker</title>
+</head>
+
+<body>
+
+
+{% include "navbar.njk" %}
+<div id="container">
+  
+  <select id="typeOfPlot">
+    <option value="NetIncome">Net income</option></h1>
+    <option value="Income">Income</option>
+    <option value="Expense">Expense</option>
+  </select>
+  
+  <div id="netIncome"></div>
+    <br>
+
+    <div>
+        <div class="controls">
+            <button id="thisYearBtn">This year</button>
+            <button id="prev">◀</button>
+            <div id="yearTitle"></div>
+            <button id="next" class="unavailable">▶</button>
+            <button type="button" id="forecastRemainingBtn" class="forecast-remaining-btn">Forecast remaining months</button>
+      </div>
+        <div class="chart-block">
+        <div class="chart-plot-wrap">
+          <div id="MonthlyPlot" class="monthly-plot"></div>
+          <button type="button" id="downloadPlotBtn" title="Download PNG and forecast info">Download</button>
+        </div>
+        <div id="plotTotal" class="plot-total-header"></div>
+        <div id="forecastControls" class="forecast-controls">
+          <label for="predictionSelect">Saved forecasts</label>
+          <select id="predictionSelect" class="forecast-select">
+            <option value="">(No forecasts yet)</option>
+          </select>
+          <button type="button" id="recalculateForecastBtn">Forecast</button>
+        </div>
+        <div id="forecastSavedSummary" class="forecast-saved-summary"></div>
+        </div>
+
+    </div>
+</div>
+
+<div id="forecastModal" class="forecast-modal">
+  <div class="forecast-modal-content">
+    <div class="forecast-modal-header">
+      <h2 id="forecastModalTitle">Forecast</h2>
+      <span id="forecastModalClose" class="forecast-modal-close">&times;</span>
+    </div>
+    <div class="forecast-modal-body">
+      <label class="forecast-label" for="yearsExamined">Previous years to examine:</label>
+      <input type="number" id="yearsExamined" min="1" value="1" class="forecast-input">
+      <p id="yearsExaminedHint" class="forecast-hint"></p>
+      <p id="forecastHint" class="forecast-hint"></p>
+      <label id="includeCurrentMonthLabel" class="forecast-checkbox-label" style="display:none;">
+        <input type="checkbox" id="includeCurrentMonth">
+        Exclude current month
+      </label>
+      <div id="forecastTrainingSection" class="forecast-training-section" style="display:none;">
+        <p class="forecast-label">Include saved forecasts in training:</p>
+        <div id="forecastTrainingList" class="forecast-training-list"></div>
+      </div>
+      <p id="ForecastError" class="forecast-error"></p>
+
+      <fieldset class="forecast-model-fieldset">
+        <legend>Forecast model</legend>
+        <label><input type="radio" name="forecastModel" value="growth" checked> Growth Rate</label>
+        <label><input type="radio" name="forecastModel" value="driver"> Driver-Based</label>
+        <label><input type="radio" name="forecastModel" value="gb"> Gradient Boosting</label>
+      </fieldset>
+
+      <div id="forecastPanel" class="forecast-panel">
+        <label class="forecast-label" for="growthRateIncome">Income growth (%)</label>
+        <input type="number" id="growthRateIncome" class="forecast-input" step="0.01" placeholder="0">
+        <label class="forecast-label" for="growthRateExpense">Expense growth (%)</label>
+        <input type="number" id="growthRateExpense" class="forecast-input" step="0.01" placeholder="0">
+        <p id="forecastPanelTrainingSummary" class="forecast-panel-training-summary"></p>
+      </div>
+
+      <div id="driverPanel" class="forecast-panel" style="display:none;">
+        <div id="driverIncomeSection" class="driver-section">
+          <h3>Income sources</h3>
+          <input type="search" id="driverIncomeSearch" class="driver-source-search" placeholder="Search sources…">
+          <div id="driverIncomeList" class="driver-source-list"></div>
+          <button type="button" id="driverIncomeShowMore" class="driver-show-all" style="display:none;">Show more</button>
+        </div>
+        <div id="driverExpenseSection" class="driver-section">
+          <h3>Expense sources</h3>
+          <input type="search" id="driverExpenseSearch" class="driver-source-search" placeholder="Search sources…">
+          <div id="driverExpenseList" class="driver-source-list"></div>
+          <button type="button" id="driverExpenseShowMore" class="driver-show-all" style="display:none;">Show more</button>
+        </div>
+      </div>
+
+      <div id="gbPanel" class="forecast-panel" style="display:none;">
+        <fieldset class="forecast-model-fieldset">
+          <legend>Optuna trial numbers</legend>
+          <label><input type="radio" name="gbTuningLevel" value="1" checked> Fast — 50</label>
+          <label><input type="radio" name="gbTuningLevel" value="2"> Mid — 100</label>
+          <label><input type="radio" name="gbTuningLevel" value="3"> Advanced — 200</label>
+          <label><input type="radio" name="gbTuningLevel" value="4"> Extreme — 500</label>
+        </fieldset>
+        <fieldset class="forecast-model-fieldset">
+          <legend>Optuna pruner</legend>
+          <label><input type="radio" name="gbPruner" value="none" checked> None</label>
+          <label><input type="radio" name="gbPruner" value="median"> MedianPruner</label>
+          <label><input type="radio" name="gbPruner" value="hyperband"> Hyperband</label>
+        </fieldset>
+        <fieldset class="forecast-model-fieldset">
+          <legend>Time cap</legend>
+          <label><input type="radio" name="gbTimeCap" value="none" checked> No time cap</label>
+          <label><input type="radio" name="gbTimeCap" value="on"> Time cap</label>
+          <div id="gbTimeCapFields" class="gb-time-cap-fields" style="display:none;">
+            <label>Hours <input type="number" id="gbTimeoutHours" min="0" max="99" step="1" value="0" class="forecast-input"></label>
+            <label>Minutes <input type="number" id="gbTimeoutMinutes" min="0" max="59" step="1" value="0" class="forecast-input"></label>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div class="forecast-modal-actions">
+      <button type="button" id="forecastCancel">Cancel</button>
+      <button type="button" id="forecastCalculate" class="forecast-primary">Calculate</button>
+    </div>
+  </div>
+</div>
+
+<div id="gbDiagnoseModal" class="forecast-modal">
+  <div class="forecast-modal-content">
+    <div class="forecast-modal-header">
+      <h2 id="gbDiagnoseTitle">Optuna trials until now</h2>
+    </div>
+    <div class="forecast-modal-body">
+      <p id="gbDiagnoseBody" class="gb-diagnose-body"></p>
+    </div>
+    <div class="forecast-modal-actions">
+      <button type="button" id="gbDiagnoseKeep" class="forecast-primary">Keep the best trial so far</button>
+      <button type="button" id="gbDiagnoseTune" style="display:none;">Keep tuning</button>
+    </div>
+  </div>
+</div>
+
+<style>
+#yearTitle {
+  display: inline-block; /* ensures buttons stay in the same line */
+}
+</style>
+
+{% include "footer.njk" %}
+
+</body>
+<script src="/javascript/common/jquery-3.7.1.min.js"></script>
+<script src="/javascript/common/ErrorHandlingHelper.js"></script>
+<script src="/javascript/common/requestHandler.js"></script>
+<script src="/javascript/common/navbar.js"></script>
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="/javascript/historyAndpredictions/prediction_models.js"></script>
+<script src="/javascript/historyAndpredictions/historicData.js"></script>
+<script src="/javascript/historyAndpredictions/predictions.js"></script>
+<script src="/javascript/historyAndpredictions/graphDisplay.js"></script>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/css/Starter/starter.css">
+  <link rel="stylesheet" href="/css/common/navbar.css">
+  <link rel="stylesheet" href="/css/common/footer.css">
+  <link rel="stylesheet" href="/css/common/spinner.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ERP</title>
+</head>
+<body>
+  {% include "navbar.njk" %}
+
+  <div class="main-content home-dashboard">
+    <div class="dashboard-panel">
+      <section class="welcome-section">
+        <h1 id="welcomeTitle">Welcome</h1>
+        <p class="welcome-subtitle">Help your company grow</p>
+      </section>
+
+      <div class="shift-section" id="shiftSection" aria-label="Next upcoming shift">
+        <p class="shift-widget-label">Next upcoming shift</p>
+        <p class="shift-widget-value" id="shiftWidgetValue">Loading...</p>
+        <p class="shift-widget-label shift-widget-label--coworkers">Working with</p>
+        <ul class="coworkers-list" id="shiftCoworkersList">
+          <li class="coworkers-empty">Loading...</li>
+        </ul>
+      </div>
+    </div>
+
+    <section class="recent-transactions-panel" id="recentTransactionsPanel" hidden>
+      <h2 class="recent-transactions-title">Recent transactions</h2>
+      <ul class="recent-transactions-list" id="recentTransactionsList"></ul>
+    </section>
+  </div>
+
+{% include "footer.njk" %}
+
+  <script src="/javascript/common/jquery-3.7.1.min.js"></script>
+  <script src="/javascript/common/ErrorHandlingHelper.js"></script>
+  <script src="/javascript/common/requestHandler.js"></script>
+  <script src="/javascript/common/navbar.js"></script>
+  <script src="/javascript/Starter/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/profile/preveliges.css">
+    <link rel="stylesheet" href="/css/common/navbar.css">
+    <link rel="stylesheet" href="/css/common/footer.css">
+    <link rel="stylesheet" href="/css/common/spinner.css">
+    <title>Manage Profile and Manage-Employee</title>
+</head>
+<body class="Manage-Employee-page">
+    {% include "navbar.njk" %}
+
+    <div class="Manage-Employee-wrapper">
+        <div class="profile-card" id="profileCard">
+            <h1 id="employeeName" class="employee-name"></h1>
+
+            <div class="profile-photo-wrap">
+                <img id="profilePhoto" class="profile-photo" src="" alt="Profile photo">
+            </div>
+
+            <p id="employeeEmail" class="employee-email"></p>
+
+            <h2 class="section-title">Role</h2>
+            <p id="employeeRole" class="employee-role"></p>
+
+            <h2 class="section-title">Description / Bio</h2>
+            <p id="employeeDescription" class="employee-description"></p>
+
+            <div id="notesSection" style="display: none;">
+                <h2 id="notesTitle" class="section-title">Notes</h2>
+                <label for="employeeNotesHistory" class="notes-label">Note history</label>
+                <textarea id="employeeNotesHistory" class="employee-notes employee-notes-history" rows="6" readonly tabindex="-1" placeholder="No notes yet."></textarea>
+
+                <div id="addNoteSection" style="display: none;">
+                    <label for="newEmployeeNote" class="notes-label">Add a note</label>
+                    <textarea id="newEmployeeNote" class="employee-notes employee-notes-input" rows="3" maxlength="1000" placeholder="Write a new note..."></textarea>
+                    <button type="button" id="addNoteBtn" class="action-btn">Add note</button>
+                </div>
+            </div>
+
+            <hr class="section-separator" id="notesPrivilegesSeparator" style="display: none;">
+
+            <div id="manageSection" class="manage-section" style="display: none;">
+                <h2 class="section-title">Grant Preveleges</h2>
+                <div class="privilege-checkboxes">
+                    <label><input type="checkbox" id="priv-income" name="income"> Income</label>
+                    <label><input type="checkbox" id="priv-expenses" name="expenses"> Expenses</label>
+                    <label><input type="checkbox" id="priv-money-tracker" name="money-tracker"> Money Tracker</label>
+                    <label><input type="checkbox" id="priv-shift" name="shift"> Shift management</label>
+                    <label><input type="checkbox" id="priv-manage-employees" name="manage-employees"> Update notes & manage employees</label>
+                </div>
+                <button type="button" id="grantBtn" class="action-btn">Update</button>
+            </div>
+        </div>
+    </div>
+
+{% include "footer.njk" %}
+
+    <script src="/javascript/common/jquery-3.7.1.min.js"></script>
+    <script src="/javascript/common/ErrorHandlingHelper.js"></script>
+    <script src="/javascript/common/requestHandler.js"></script>
+    <script src="/javascript/common/navbar.js"></script>
+    <script src="/javascript/profile/ManageEmployee.js"></script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+   body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #4e73df, #1cc88a);
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        body.auth-page {
+            padding-top: 52px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .auth-main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px 16px;
+            box-sizing: border-box;
+        }
+
+        .auth-main--preview {
+            min-height: calc(100vh - 52px);
+        }
+
+        .auth-navbar {
+            position: fixed;
+        }
+
+        form p.form-intro,
+        form #warning {
+            color: #ffffff;
+            margin: 0 0 8px;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        h1 {
+            margin-bottom: 25px;
+            color: #ffffff;
+        }
+
+        form {
+            background-color: rgba(121, 121, 121, 0.705);
+            width: 520px; 
+            padding: 60px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        input {
+            background-color: #24292e;
+            width: 100%;
+            color:white;
+            padding: 12px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 0px solid #ccc;
+            font-size: 15px;
+            transition: 0.2s;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            border-color: #4e73df;
+            outline: none;
+            box-shadow: 0 0 5px #4e73df;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background: #4e73df;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #2e59d9;
+        }
+
+        .form-secondary-link {
+            margin: 16px 0 0;
+            text-align: center;
+        }
+
+        .form-secondary-link a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 15px;
+            transition: opacity 0.2s;
+        }
+
+        .form-secondary-link a:hover {
+            opacity: 0.85;
+            text-decoration: underline;
+        }
+
+        .form-recovery-links {
+            margin: 16px 0 0;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .form-recovery-links a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .form-recovery-links a:hover {
+            text-decoration: underline;
+        }
+
+        .recovery-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 16px;
+            box-sizing: border-box;
+        }
+
+        .recovery-modal[hidden] {
+            display: none;
+        }
+
+        .recovery-modal-content {
+            background-color: rgba(121, 121, 121, 0.95);
+            width: 100%;
+            max-width: 420px;
+            padding: 32px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .recovery-modal-content h2 {
+            margin: 0 0 12px;
+            color: #ffffff;
+            font-size: 22px;
+        }
+
+        .recovery-modal-content input {
+            margin-top: 8px;
+        }
+
+        .recovery-modal-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .recovery-modal-actions button {
+            margin-top: 0;
+            flex: 1;
+        }
+
+        .recovery-btn-secondary {
+            background: #6c757d;
+        }
+
+        .recovery-btn-secondary:hover {
+            background: #5a6268;
+        }

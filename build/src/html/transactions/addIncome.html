@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/transactions/addTransaction.css">
+    <link rel="stylesheet" href="/css/common/navbar.css">
+    <link rel="stylesheet" href="/css/common/footer.css">
+    <link rel="stylesheet" href="/css/common/spinner.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>addIncome</title>
+</head>
+<body class="add-transaction-page">
+    {% include "navbar.njk" %}
+
+
+<div class="containerWorker">
+        <h2>Add income</h2>
+
+<form id="addIncomeForm" action="/php/transactions/addIncome.php" method="POST" enctype="multipart/form-data">
+
+    <label for="source">Source</label>
+    <input type="text" placeholder="Type: source of income" name="source" id="source" maxlength="300" required>
+
+    <label for="income">Income</label>
+    <input type="text" name="income" id="income" placeholder="Example: 2000" inputmode="decimal" required>
+
+    <label for="date">Date</label>
+    <input type="date" name="date" id="Date" max="" required>
+
+    <label for="notes">Notes (optional)</label>
+    <textarea id="Notes" name="notes" rows="8" cols="40" maxlength="1000" placeholder="Enter transaction details..."></textarea>
+
+    <label for="attachment">File (optional)</label>
+    <input type="file" id="attachment" name="attachment" accept=".pdf,.jpg,.jpeg,.png,.xml,.csv,.json,.eml,.txt,.docx,.zip">
+
+    <script>
+        const dateInput = document.getElementById("Date");
+        const today = new Date().toISOString().split("T")[0];
+        dateInput.max = today;
+
+        const ALLOWED_ATTACHMENT_EXTENSIONS = ['pdf', 'jpg', 'jpeg', 'png', 'xml', 'csv', 'json', 'eml', 'txt', 'docx', 'zip'];
+        const ALLOWED_ATTACHMENT_MSG = 'Only pdf, jpg, png, xml, csv, json, eml, txt, docx, and zip files are allowed.';
+        const ATTACHMENT_MAX_BYTES = 150 * 1024 * 1024;
+        const ATTACHMENT_MAX_MSG = 'File must be 150 MB or smaller.';
+
+        document.getElementById('attachment').addEventListener('change', function () {
+            const file = this.files[0];
+            if (!file) {
+                return;
+            }
+            if (file.size > ATTACHMENT_MAX_BYTES) {
+                alert(ATTACHMENT_MAX_MSG);
+                this.value = '';
+                return;
+            }
+            const ext = (file.name.split('.').pop() || '').toLowerCase();
+            if (!ALLOWED_ATTACHMENT_EXTENSIONS.includes(ext)) {
+                alert(ALLOWED_ATTACHMENT_MSG);
+                this.value = '';
+            }
+        });
+
+        document.getElementById('addIncomeForm').addEventListener('submit', function (e) {
+            const source = document.getElementById('source').value.trim();
+            const amount = document.getElementById('income').value.trim();
+            const notes = document.getElementById('Notes').value;
+            if (!source) {
+                e.preventDefault();
+                alert('Source cannot be empty.');
+                return;
+            }
+            if (source.length > 300) {
+                e.preventDefault();
+                alert('Source exceeds 300 characters.');
+                return;
+            }
+            if (!/^\d+(\.\d{1,2})?$/.test(amount) || Number(amount) <= 0) {
+                e.preventDefault();
+                alert('Amount must be a positive number with at most two decimal places.');
+                return;
+            }
+            if (notes.length > 1000) {
+                e.preventDefault();
+                alert('Notes exceed 1000 characters.');
+            }
+        });
+    </script>
+
+    <input type="submit" class="btn">
+</form>
+
+
+</div>
+
+
+{% include "footer.njk" %}
+
+<script src="/javascript/common/jquery-3.7.1.min.js"></script>
+<script src="/javascript/common/ErrorHandlingHelper.js"></script>
+<script src="/javascript/common/requestHandler.js"></script>
+<script src="/javascript/common/navbar.js"></script>
+</body>
+
+</html>

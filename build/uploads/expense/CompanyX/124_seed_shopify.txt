@@ -1,0 +1,5 @@
+﻿CompanyX - Expense invoice (seed)
+Source: Shopify platform fee
+Amount: EUR 194.00
+Date: 2026-06-25
+Notes: Storefront uptime and order-management tools

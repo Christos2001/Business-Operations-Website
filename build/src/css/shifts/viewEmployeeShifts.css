@@ -1,0 +1,117 @@
+body.view-shifts-page {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.view-shifts-content {
+    flex: 1;
+    max-width: 960px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 80px 20px 40px;
+    box-sizing: border-box;
+}
+
+.view-shifts-title {
+    margin: 0 0 24px;
+    font-size: 1.75rem;
+    color: #1a202c;
+}
+
+.view-shifts-sections {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+    gap: 32px;
+    align-items: stretch;
+}
+
+@media (max-width: 640px) {
+    .view-shifts-sections {
+        grid-template-columns: 1fr;
+    }
+}
+
+.shift-section {
+    flex: 1;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.shift-section h2 {
+    margin: 0 0 16px;
+    font-size: 1.25rem;
+    color: #2b6cb0;
+}
+
+.shift-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.shift-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 14px;
+    background: #f7fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+}
+
+.shift-item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.shift-item-label {
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.shift-item-times {
+    font-size: 0.9rem;
+    color: #4a5568;
+    margin-top: 4px;
+}
+
+.shift-delete-btn {
+    flex-shrink: 0;
+    padding: 8px 14px;
+    background-color: #c53030;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.shift-delete-btn:hover {
+    background-color: #9b2c2c;
+}
+
+.shift-delete-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.shift-empty {
+    margin: 0;
+    color: #718096;
+    font-style: italic;
+    flex: 1;
+}

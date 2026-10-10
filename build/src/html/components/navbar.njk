@@ -1,0 +1,46 @@
+<div class="navbar" id="navbar">
+  <a href="/html/Starter/home.html">Home</a>
+  <a href="/html/shifts/calendar.html">Shifts</a>
+  <div class="nav-dropdown" id="transactions-dropdown">
+    <span class="nav-dropdown-trigger" role="button" tabindex="0" aria-expanded="false" aria-haspopup="true">Transactions</span>
+    <div class="nav-dropdown-menu">
+      <a id="income-link" href="/html/transactions/records.html?type=Income">Income</a>
+      <a id="expenses-link" href="/html/transactions/records.html?type=Expense">Expenses</a>
+    </div>
+  </div>
+  <a id="money-tracker-link" href="/html/historyAndpredictions/money-tracker.html">Money Tracker</a>
+  <a id="privileges-link" href="/html/searchEmployee.html?q=manageEmp">Manage Employee</a>
+  <div id="authButtons">
+    <a href="/html/profile/profile.html">Profile</a>
+    <a class="left-corner" href="/php/auth/logout.php">Logout</a>
+  </div>
+</div>
+<script>
+(function () {
+  try {
+    var cached = JSON.parse(sessionStorage.getItem('navbarUserAccess') || 'null');
+    if (!cached || !cached.role) {
+      return;
+    }
+    var ids = [];
+    var privileges = cached.privileges || [];
+    if (cached.role === 'manager') {
+      ids = ['income-link', 'expenses-link', 'money-tracker-link', 'privileges-link', 'transactions-dropdown'];
+    } else {
+      if (privileges.indexOf('income') !== -1) ids.push('income-link');
+      if (privileges.indexOf('expenses') !== -1) ids.push('expenses-link');
+      if (privileges.indexOf('money-tracker') !== -1) ids.push('money-tracker-link');
+      if (privileges.indexOf('manage-employees') !== -1) ids.push('privileges-link');
+      if (privileges.indexOf('income') !== -1 || privileges.indexOf('expenses') !== -1) {
+        ids.push('transactions-dropdown');
+      }
+    }
+    ids.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) {
+        el.style.display = 'block';
+      }
+    });
+  } catch (e) {}
+})();
+</script>

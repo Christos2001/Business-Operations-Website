@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/common/navbar.css">
+    <link rel="stylesheet" href="/css/common/footer.css">
+    <link rel="stylesheet" href="/css/common/spinner.css">
+    <link rel="stylesheet" href="/css/profile/profile.css">
+    <title>Profile</title>
+</head>
+<body class="profile-page">
+    {% include "navbar.njk" %}
+
+    <div class="profile-wrapper">
+        <div class="profile-card" id="profileCard">
+            <h1 id="profileName" class="profile-name"></h1>
+
+            <div class="profile-photo-wrap">
+                <img id="profilePhoto" class="profile-photo" src="" alt="Profile photo">
+            </div>
+            <div id="photoActions" class="photo-actions" style="display: none;">
+                <input type="file" id="photoInput" accept="image/jpeg,image/png,.jpg,.jpeg,.png" hidden>
+                <button type="button" id="changePhotoBtn" class="secondary-btn">Change photo</button>
+            </div>
+
+            <div class="email-row">
+                <span id="profileEmail" class="profile-email"></span>
+                <button type="button" id="changeEmailBtn" class="secondary-btn">Change email</button>
+            </div>
+
+            <h2 class="section-title">Role</h2>
+            <input type="text" id="profileRole" class="profile-role" maxlength="50" placeholder="Role">
+            <button type="button" id="saveRoleBtn" class="action-btn">Save role</button>
+
+            <h2 class="section-title">Description / Bio</h2>
+            <textarea id="profileDescription" class="profile-description" rows="5" maxlength="255"></textarea>
+            <button type="button" id="saveDescriptionBtn" class="action-btn">Save description</button>
+
+            <div id="deleteAccountSection" class="delete-zone" style="display: none;">
+                <button type="button" id="deleteAccountBtn" class="delete-btn">Delete account permanently</button>
+                <p class="delete-zone__note">Permanently delete your account. This cannot be undone.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="deleteAccountModal" class="email-modal">
+        <div class="email-modal-content">
+            <div class="email-modal-header">
+                <h2>Delete account</h2>
+                <span id="deleteAccountModalClose" class="email-modal-close">&times;</span>
+            </div>
+            <form id="deleteAccountForm">
+                <p class="email-modal-note delete-zone__note">Enter your password to confirm permanent deletion of your account.</p>
+                <label for="deleteAccountPassword">Password</label>
+                <input type="password" id="deleteAccountPassword" name="password" required autocomplete="current-password">
+                <div class="email-modal-actions">
+                    <button type="button" id="cancelDeleteAccountBtn" class="secondary-btn">Cancel</button>
+                    <button type="submit" id="submitDeleteAccountBtn" class="delete-btn">Delete permanently</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="emailModal" class="email-modal">
+        <div class="email-modal-content">
+            <div class="email-modal-header">
+                <h2>Change email</h2>
+                <span id="emailModalClose" class="email-modal-close">&times;</span>
+            </div>
+            <form id="changeEmailForm">
+                <p class="email-modal-note">A verification link will be sent to your new email. Your address will not change until you confirm it.</p>
+                <label for="newEmailInput">New email</label>
+                <input type="email" id="newEmailInput" name="newEmail" required>
+                <div class="email-modal-actions">
+                    <button type="button" id="cancelEmailBtn" class="secondary-btn">Cancel</button>
+                    <button type="submit" id="submitEmailBtn" class="action-btn">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% include "footer.njk" %}
+
+    <script src="/javascript/common/jquery-3.7.1.min.js"></script>
+    <script src="/javascript/common/ErrorHandlingHelper.js"></script>
+    <script src="/javascript/common/requestHandler.js"></script>
+    <script src="/javascript/common/navbar.js"></script>
+    <script src="/javascript/profile/profile.js?v=8"></script>
+</body>
+</html>

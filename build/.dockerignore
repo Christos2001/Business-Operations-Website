@@ -1,0 +1,31 @@
+# VCS / editor
+.git
+.gitignore
+.cursor
+.idea
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Secrets (injected at runtime via env_file)
+.env
+.env.*
+
+# App code and data (bind-mounted at runtime, not baked into the image)
+src
+uploads
+imgs
+
+# DB seed is mounted by the db service
+init.sql
+
+# Generated / installed on container start
+node_modules
+vendor
+_site
+logs
+*.log
+
+# Docs
+*.md

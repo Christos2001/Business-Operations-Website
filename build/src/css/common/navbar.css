@@ -1,0 +1,160 @@
+.navbar {
+  background-color: #333;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1000;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar > a {
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s;
+  border-radius: 0;
+  background-color: transparent;
+}
+
+.navbar > a:hover {
+  background-color: #575757;
+  color: #fff;
+}
+
+.nav-dropdown {
+  position: relative;
+  display: none;
+}
+
+.nav-dropdown-trigger {
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 20px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.3s, color 0.3s;
+}
+
+.nav-dropdown:hover .nav-dropdown-trigger,
+.nav-dropdown.open .nav-dropdown-trigger {
+  background-color: #575757;
+  color: #fff;
+}
+
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #333;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown.open .nav-dropdown-menu {
+  display: block;
+}
+
+.nav-dropdown-menu a {
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 12px 20px;
+  text-decoration: none;
+  box-sizing: border-box;
+  width: 100%;
+  transition: background 0.3s, color 0.3s;
+}
+
+.nav-dropdown-menu a:hover {
+  background-color: #575757;
+  color: #fff;
+}
+
+#transactions-dropdown,
+#income-link,
+#expenses-link,
+#money-tracker-link,
+#privileges-link {
+  display: none;
+}
+
+#authButtons {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-right: 16px;
+  flex-shrink: 0;
+}
+
+#authButtons a {
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s;
+  border-radius: 0;
+  background-color: transparent;
+}
+
+#authButtons a:hover {
+  background-color: #575757;
+  color: #fff;
+}
+
+#authButtons a.left-corner {
+  background-color: #007bff;
+  border-radius: 10px;
+}
+
+#authButtons a.left-corner:hover {
+  background-color: #0056b3;
+  color: #fff;
+}
+
+@media screen and (max-width: 600px) {
+  .navbar > a,
+  .nav-dropdown,
+  .nav-dropdown-trigger,
+  .nav-dropdown-menu a,
+  #authButtons a {
+    width: 100%;
+    text-align: left;
+  }
+
+  .nav-dropdown-menu {
+    position: static;
+    box-shadow: none;
+    display: none;
+  }
+
+  .nav-dropdown:hover .nav-dropdown-menu,
+  .nav-dropdown.open .nav-dropdown-menu {
+    display: block;
+  }
+
+  #authButtons {
+    width: 100%;
+    margin-left: 0;
+    padding-right: 0;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

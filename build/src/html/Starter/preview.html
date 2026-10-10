@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/Starter/starter.css">
+    <link rel="stylesheet" href="/css/common/navbar.css">
+    <link rel="stylesheet" href="/css/common/footer.css">
+    <link rel="stylesheet" href="/css/common/spinner.css">
+    <link rel="stylesheet" href="/css/auth/auth-forms.css">
+    <title>Home</title>
+</head>
+<body class="auth-page preview-page">
+    {% include "auth-navbar.njk" %}
+
+    <div class="main-content">
+        <section class="hero">
+            <h1>Welcome to our Management System</h1>
+            <p>Efficiently manage your workforce and business finances within a secure platform.</p>
+        </section>
+
+        <section class="features">
+            <div class="feature">
+                <h3>Staff Management</h3>
+                <p>Maintain employee <b>records</b>, assign <b>shifts</b>, and <b>manage</b> responsibilities within the system.</p>
+            </div>
+            <div class="feature">
+                <h3>Transaction Tracking</h3>
+                <p><b>Store</b> your business <b>transactions</b> with <b>detailed</b> information to stay always organized.</p>
+            </div>
+            <div class="feature">
+                <h3>Performance Reports</h3>
+                <p>Generate insightful <b>reports</b> to <b>analyze</b> your business performance.</p>
+            </div>
+            <div class="feature">
+                <h3>Predictive Analytics</h3>
+                <p>An intuitive interface to <b>help you forecast </b> business operations.</p>
+            </div>
+        </section>
+    </div>
+
+{% include "footer.njk" %}
+
+    <script src="/javascript/common/ErrorHandlingHelper.js"></script>
+    <script src="/javascript/common/requestHandler.js"></script>
+</body>
+</html>

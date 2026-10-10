@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/transactions/addTransaction.css">
+    <link rel="stylesheet" href="/css/shifts/addShift.css">
+    <link rel="stylesheet" href="/css/common/navbar.css">
+    <link rel="stylesheet" href="/css/common/footer.css">
+    <link rel="stylesheet" href="/css/common/spinner.css">
+
+    <title>addShift</title>
+</head>
+<body class="add-shift-page">
+     {% include "navbar.njk" %}
+
+<div class="shift-page-content">
+<div class="containerShift">
+    <form id="weeklyShiftForm" class="shift-form" action="/php/shifts/addWeeklyShift.php" method="POST">
+      <h2>Add weekly shift</h2>
+      <label for="weeklyDay">Day of Week</label>
+      <select name="day" id="weeklyDay" class="day-select" required>
+        <option value="" disabled selected>Select a day</option>
+        <option value="Monday">Monday</option>
+        <option value="Tuesday">Tuesday</option>
+        <option value="Wednesday">Wednesday</option>
+        <option value="Thursday">Thursday</option>
+        <option value="Friday">Friday</option>
+        <option value="Saturday">Saturday</option>
+        <option value="Sunday">Sunday</option>
+      </select>
+      <p>Check-in </p>
+      <input type="time" name="startTime" class="weekly-start" required>
+      <p>Check-out</p>
+      <input type="time" name="endTime" class="weekly-end" required>
+
+      <input type="hidden" name="userID" class="userID">
+      <button type="submit" class="shift-submit">Submit</button>
+    </form>
+</div>
+
+<div class="containerShift">
+    <form id="oneTimeShiftForm" class="shift-form" action="/php/shifts/addOneTimeShift.php" method="POST">
+     <h2>Add one time shift</h2>
+        <p>Add date</p>
+        <input type="date" name="sDate" id="oneTimeDate" required>
+        <p>Check-in</p>
+        <input type="time" name="startTime" class="onetime-start" required>
+        <p>Check-out</p>
+        <input type="time" name="endTime" class="onetime-end" required>
+
+      <input type="hidden" name="userID" class="userID">
+      <button type="submit" class="shift-submit">Submit</button>
+    </form>
+</div>
+</div>
+
+{% include "footer.njk" %}
+
+<script src="/javascript/common/jquery-3.7.1.min.js"></script>
+<script src="/javascript/common/ErrorHandlingHelper.js"></script>
+<script src="/javascript/common/requestHandler.js"></script>
+<script src="/javascript/common/navbar.js"></script>
+<script src="/javascript/shifts/addShift.js"></script>
+
+</body>
+</html>

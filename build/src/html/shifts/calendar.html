@@ -1,0 +1,111 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="/css/shifts/calendar.css">
+  <link rel="stylesheet" href="/css/common/navbar.css">
+  <link rel="stylesheet" href="/css/common/footer.css">
+  <link rel="stylesheet" href="/css/common/spinner.css">
+
+  <title>Calendar</title>
+</head>
+<body>
+
+    {% include "navbar.njk" %}
+
+
+
+  <div class="wrap">
+    <div class="calendar-main">
+      <div class="calendar-grid">
+        <header>
+          <div class="controls">
+            <button id="prev">◀</button>
+            <div id="dateTitle"></div>
+            <button id="next">▶</button>
+            <input id="pick" type="month" />
+            <button id="todayBtn">Today</button>
+          </div>
+        </header>
+        <div class="calendar-actions">
+          <a class="add-shift-btn" href="/html/searchEmployee.html?q=addShift">Add Shift</a>
+          <a class="view-shifts-btn" href="/html/searchEmployee.html?q=viewShifts">View employee shifts</a>
+        </div>
+        <main>
+          <table id="calendar">
+            <thead>
+              <tr id="weekdays"></tr>
+            </thead>
+            <tbody id="days">
+              <tr>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+              </tr>
+              <tr>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+              </tr>
+              <tr>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+              </tr>
+              <tr>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+              </tr>
+              <tr>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+              </tr>
+              <tr>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+                <td><div class="day-number" style="font-weight:600"></div><div class="day-content" style="margin-top:8px;font-size:14px"></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </main>
+      </div>
+    </div>
+  </div>
+
+{% include "footer.njk" %}
+
+</body>
+    <script src="/javascript/common/jquery-3.7.1.min.js"></script>
+    <script src="/javascript/common/ErrorHandlingHelper.js"></script>
+    <script src="/javascript/common/requestHandler.js"></script>
+    <script src="/javascript/common/navbar.js"></script>
+    <script src="/javascript/shifts/calendar.js?v=2.3.5"></script>
+
+</html>

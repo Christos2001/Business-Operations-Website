@@ -1,0 +1,692 @@
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding: 52px 0 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #4e73df, #1cc88a);
+    color: #333;
+  }
+
+  #container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 1000px;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+    box-sizing: border-box;
+  }
+
+  #container > div {
+    width: 100%;
+  }
+
+  /* 2. Stylish & Big Select (like a header) */
+  #typeOfPlot {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 2rem;
+    font-weight: bold;
+    border: none;
+    border-bottom: 3px solid #007bff;
+    background: transparent;
+    padding: 10px;
+    outline: none;
+    cursor: pointer;
+    margin-bottom: 30px;
+    color: white;
+    text-align-last: center;
+  }
+
+  /* 3. Controls (Buttons & Year) */
+  .controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  #yearTitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    min-width: 80px;
+  }
+
+  button {
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+ 
+
+  #thisYearBtn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+  }
+
+  #thisYearBtn:hover {
+    background-color: #0056b3;
+  }
+
+  /* 4. Input Styling */
+  #year {
+    padding: 8px;
+    width: 80px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+  }
+
+  /* 5. Plot centering */
+  .chart-block {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .chart-plot-wrap {
+    position: relative;
+    width: 100%;
+  }
+
+  #downloadPlotBtn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 10;
+    background: #0f832c;
+    color: white;
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  }
+
+  #downloadPlotBtn:hover {
+    opacity: 0.9;
+  }
+
+  .monthly-plot {
+    width: 100%;
+    min-height: 500px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  #MonthlyPlot {
+    margin: 0 auto;
+    min-height: 500px;
+  }
+
+  .plot-total-header {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 12px;
+    margin-bottom: 8px;
+    padding: 12px 16px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #333;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 8px 24px;
+  }
+
+  .plot-total-diff {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .plot-total-diff-positive {
+    color: #1a7f37;
+  }
+
+  .plot-total-diff-negative {
+    color: rgb(177, 41, 0);
+  }
+
+  .plot-total-diff-neutral {
+    color: #666;
+  }
+
+  .plot-total-header:empty {
+    display: none;
+  }
+
+.controls button {
+  margin: 4px;
+}
+
+.forecast-remaining-btn {
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.forecast-remaining-btn:hover:not(:disabled) {
+  background: #0056b3;
+}
+
+.forecast-remaining-btn--inactive,
+.forecast-remaining-btn:disabled,
+#recalculateForecastBtn.forecast-btn--inactive,
+#recalculateForecastBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.unavailable{
+    background-color: grey;
+    border-color: grey;
+
+  }
+
+.forecast-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 12px;
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.forecast-controls label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #444;
+}
+
+.forecast-select {
+  flex: 1;
+  min-width: 0;
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 0.85rem;
+}
+
+.forecast-select[size] {
+  overflow-y: auto;
+  height: auto;
+}
+
+#recalculateForecastBtn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  white-space: nowrap;
+}
+
+#recalculateForecastBtn:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+/* Forecast modal */
+.forecast-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+}
+
+.forecast-modal.forecast-modal-open {
+  display: flex;
+}
+
+.forecast-modal-content {
+  position: relative;
+  background: #fff;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 520px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 20px 24px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.forecast-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.forecast-modal-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.forecast-modal-close {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #888;
+  line-height: 1;
+}
+
+.forecast-modal-close:hover,
+.forecast-modal-close:focus {
+  color: rgb(177, 41, 0);
+}
+
+.forecast-label {
+  display: block;
+  margin-top: 12px;
+  margin-bottom: 4px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.forecast-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #333;
+  cursor: pointer;
+}
+
+.forecast-checkbox-label input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+  cursor: pointer;
+}
+
+.forecast-input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.forecast-hint {
+  color: #555;
+  font-size: 0.85rem;
+  margin: 4px 0 0;
+  min-height: 1.2em;
+}
+
+.forecast-training-section {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  background: #fafafa;
+}
+
+.forecast-training-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+  width: 100%;
+}
+
+.forecast-training-year-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.forecast-training-year-group:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.forecast-training-year-label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #333;
+  margin: 0;
+}
+
+.forecast-training-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  padding-left: 2px;
+}
+
+.forecast-training-section .forecast-training-option {
+  display: flex !important;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 0.82rem;
+  color: #444;
+  cursor: pointer;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.forecast-training-section .forecast-training-option input[type="radio"] {
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+  margin: 3px 0 0;
+  cursor: pointer;
+}
+
+.forecast-training-section .forecast-training-option-text {
+  flex: 1 1 0;
+  display: block;
+  min-width: 0;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+  margin: 0;
+  font-weight: normal;
+}
+
+.forecast-error {
+  color: #c0392b;
+  font-size: 0.85rem;
+  margin: 4px 0 0;
+  min-height: 1.2em;
+}
+
+.forecast-model-fieldset {
+  margin-top: 16px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.forecast-model-fieldset label {
+  display: block;
+  margin: 6px 0;
+  cursor: pointer;
+}
+
+.forecast-panel {
+  margin-top: 12px;
+}
+
+.gb-time-cap-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.gb-time-cap-fields .forecast-input {
+  width: 72px;
+  margin-left: 6px;
+}
+
+.gb-diagnose-body {
+  white-space: pre-line;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.driver-section h3 {
+  font-size: 1rem;
+  margin: 12px 0 8px;
+  color: #444;
+}
+
+.driver-source-search {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 10px;
+  margin-bottom: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.driver-source-search:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.driver-source-list {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.driver-source-list.driver-expanded {
+  max-height: 320px;
+}
+
+.driver-source-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.driver-source-row.driver-hidden,
+.driver-source-row.driver-search-hidden {
+  display: none;
+}
+
+.driver-source-name {
+  flex: 1;
+  text-align: left;
+  font-size: 0.9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.driver-gr-input {
+  width: 90px;
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: right;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.driver-gr-input::-webkit-outer-spin-button,
+.driver-gr-input::-webkit-inner-spin-button,
+#growthRateIncome::-webkit-outer-spin-button,
+#growthRateIncome::-webkit-inner-spin-button,
+#growthRateExpense::-webkit-outer-spin-button,
+#growthRateExpense::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+#growthRateIncome,
+#growthRateExpense {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.driver-gr-input.driver-gr-default {
+  color: #999;
+}
+
+.driver-gr-input::placeholder {
+  color: #999;
+}
+
+.driver-show-all {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  background: transparent;
+  border: 1px solid #007bff;
+  color: #007bff;
+}
+
+.driver-show-all:hover {
+  background: #f0f7ff;
+}
+
+.forecast-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+}
+
+.forecast-primary {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.forecast-primary:hover {
+  background-color: #0056b3;
+}
+
+.driver-empty {
+  font-size: 0.85rem;
+  color: #888;
+  margin: 8px 0;
+}
+
+.forecast-saved-summary {
+  display: none;
+  margin: 10px 0 12px;
+  padding: 10px 12px;
+  background: #f4f8ff;
+  border: 1px solid #c9daf8;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.forecast-summary-title,
+.driver-gr-title {
+  margin: 0 0 8px;
+  font-weight: 600;
+  color: #333;
+}
+
+.forecast-summary-title + .driver-gr-row,
+.forecast-summary-title {
+  margin-top: 10px;
+}
+
+.forecast-summary-title:first-child {
+  margin-top: 0;
+}
+
+.driver-gr-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 3px 0;
+  border-bottom: 1px solid #e3ecfa;
+}
+
+.driver-gr-row:last-child {
+  border-bottom: none;
+}
+
+.driver-gr-source {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #444;
+}
+
+.driver-gr-value {
+  font-weight: 600;
+  color: #007bff;
+  white-space: nowrap;
+}
+
+#forecastSavedSummary {
+  width: 100%;
+  box-sizing: border-box;
+  max-height: 240px;
+  overflow-y: auto;
+  margin-top: 12px;
+  padding: 12px 16px;
+}
+
+.forecast-panel-training-summary {
+  margin: 12px 0 0;
+  font-size: 0.9rem;
+  color: #444;
+}
+/* 
+<div class="container">
+  <select id="typeOfPlot">
+    <option value="NetIncome">Net Income</option>
+    <option value="Income">Income</option>
+    <option value="Expense">Expense</option>
+  </select>
+
+  <div class="controls">
+    <button id="prev">◀</button>
+    <div id="yearTitle">2026</div>
+    <button id="next">▶</button>
+  </div>
+
+  <div class="controls">
+    <input type="number" id="year" name="year" min="1900" max="2100" placeholder="Year">
+    <button id="thisYearBtn">This Year</button>
+  </div>
+
+  <div id="MonthlyPlot"></div>
+</div> */

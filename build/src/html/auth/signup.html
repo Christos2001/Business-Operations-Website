@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/common/navbar.css">
+    <link rel="stylesheet" href="/css/common/footer.css">
+    <link rel="stylesheet" href="/css/common/spinner.css">
+    <link rel="stylesheet" href="/css/auth/auth-forms.css">
+    <title>Sign up page</title>
+</head>
+<body class="auth-page">
+    {% include "auth-navbar.njk" %}
+
+
+    <main class="auth-main">
+        <form action="/php/auth/signup.php" method="POST">
+            <h1>Sign up</h1>
+            <input type="text" name="name" placeholder="Name" pattern="^[\p{L}]+$" title="Only letters allowed" required>
+            <input type="text" name="surname" placeholder="Surname" pattern="^[\p{L}]+$" title="Only letters allowed" required>
+
+            <input type="text" name="username" placeholder="Username" minlength="7" required>
+
+            <input type="email" name="email" placeholder="Email" autocomplete="email" required>
+            <input class="pass" type="password" name="password" placeholder="Password" 
+            pattern="(?=.*[A-Za-z])(?=.*\d).{8,}"
+                title="Must be 8+ chars with at least one letter and one number" oninput="warning()" required>
+
+            <input class="pass" type="password" placeholder="Verify password" oninput="warning()" required>
+            <p id="warning" style="display: none;"></p>
+            <input type="text" name="role" placeholder="Role (optional)">
+            <input type="text" name="code" placeholder="Code" title="Must be exactly 14 digits" maxlength="14" required>
+            <button type="submit">Sign up</button>
+            <p class="form-secondary-link">
+                <a href="/html/auth/requestCompany.html">Add a new company</a>
+            </p>
+        </form>
+    </main>
+
+{% include "footer.njk" %}
+
+    <script>
+        function warning(){
+            let password = document.getElementsByClassName("pass");
+            let warning = document.getElementById("warning") 
+            if (password[0].value != password[1].value){
+                warning.textContent = "Password doesn't match."
+                warning.style.display = "block";
+            }else{
+                warning.style.display = "none";
+            }
+        }
+    </script>
+    <script src="/javascript/common/ErrorHandlingHelper.js"></script>
+    <script src="/javascript/common/requestHandler.js"></script>
+</body>
+</html>

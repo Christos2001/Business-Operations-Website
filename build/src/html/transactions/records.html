@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Records</title>
+    <link rel="stylesheet" href="/css/transactions/Income_Expense_Layout.css">
+    <link rel="stylesheet" href="/css/common/navbar.css">
+    <link rel="stylesheet" href="/css/common/footer.css">
+    <link rel="stylesheet" href="/css/common/spinner.css">
+
+</head>
+<body>
+
+     {% include "navbar.njk" %}
+
+
+<div id="notes_modal">
+    <div id="modal-content-div">     
+        <div id="modal-header">
+            <h4 id="info"></h4>
+            <span id="close">&times;</span>
+        </div>
+        <hr> 
+        <div id="modal-body"><p id="modal-content-p"></p></div>
+    </div>
+</div>
+
+
+<div class="table-container">
+    <div class="records-toolbar">
+        <input type="text" placeholder="Search records (press Enter)" name="searchSource" id="searchSource">
+    </div>
+    <table id="incomes">
+        <tr>
+            <th style="width: 200px;">
+               Source
+            </th>
+            <th style="width: 200px;" id="amountColumnHeader">
+                Income
+            </th>
+            <th style="width: 200px;">
+                Date
+            </th>
+            <th style="width: 200px;">
+                Notes 
+            </th>
+            <th style="width: 120px;">
+                Appended file
+            </th>
+            <th style="width: 110px;">
+            </th>
+        </tr>
+
+        <tr >
+            <td id="insertDataCell" colspan="6"><a id="insertLink"><button id="Insert" >Insert new transaction</button></a></td>        </tr>
+    </table>
+    <h1 id="noRecords" class="no-records" hidden>No Records yet</h1>
+
+
+    <div id="pagination" class="pagination">
+        <button type="button" class="page-btn" data-slot="0"></button>
+        <button type="button" class="page-btn" data-slot="1"></button>
+        <button type="button" class="page-btn" data-slot="2"></button>
+        <button type="button" class="page-btn" data-slot="3"></button>
+    </div>
+</div>
+
+{% include "footer.njk" %}
+
+<script src="/javascript/common/jquery-3.7.1.min.js"></script>
+<script src="/javascript/common/ErrorHandlingHelper.js"></script>
+<script src="/javascript/common/requestHandler.js"></script>
+<script src="/javascript/common/navbar.js"></script>
+<script src="/javascript/transactions/records.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/common/navbar.css">
+    <link rel="stylesheet" href="/css/common/footer.css">
+    <link rel="stylesheet" href="/css/common/spinner.css">
+    <link rel="stylesheet" href="/css/auth/auth-forms.css">
+    <title>Change username</title>
+</head>
+<body class="auth-page">
+    {% include "auth-navbar.njk" %}
+
+
+    <main class="auth-main">
+        <form action="/php/auth/resetUsername.php" method="POST">
+            <h1>Change username</h1>
+            <input type="hidden" name="token" id="token">
+            <input type="text" name="username" placeholder="New username" minlength="7" required>
+            <button type="submit">Save username</button>
+        </form>
+    </main>
+
+{% include "footer.njk" %}
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const token = params.get('token');
+        if (!token) {
+            alert('Invalid recovery link.');
+            window.location.href = '/html/auth/login.html';
+        } else {
+            document.getElementById('token').value = token;
+        }
+    </script>
+    <script src="/javascript/common/ErrorHandlingHelper.js"></script>
+    <script src="/javascript/common/requestHandler.js"></script>
+</body>
+</html>

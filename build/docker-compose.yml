@@ -1,0 +1,29 @@
+services:
+  web:
+    build: .
+    ports:
+      - "${WEB_PORT:-8080}:80"
+    env_file:
+      - .env
+    volumes:
+      - ./imgs:/var/www/html/imgs:ro
+      - ./:/var/www/html
+    depends_on:
+      db:
+        condition: service_started
+
+  db:
+    restart: always
+    image: mysql:8.0
+    command: --max_allowed_packet=256M
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_ROOT_PASSWORD: ${DB_PASS}
+    ports:
+      - "${DB_PORT:-3306}:3306"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:

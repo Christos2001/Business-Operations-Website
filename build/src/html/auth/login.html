@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/common/navbar.css">
+    <link rel="stylesheet" href="/css/common/footer.css">
+    <link rel="stylesheet" href="/css/common/spinner.css">
+    <link rel="stylesheet" href="/css/auth/auth-forms.css">
+    <title>Login page</title>
+</head>
+<body class="auth-page">
+    {% include "auth-navbar.njk" %}
+
+    <main class="auth-main">
+        <form action="/php/auth/login.php" method="POST">
+            <h1>Login</h1>
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+            <p class="form-recovery-links">
+                <a href="#" id="forgotUsernameLink">Forgot username?</a>
+                <a href="#" id="forgotPasswordLink">Forgot password?</a>
+            </p>
+        </form>
+    </main>
+
+    <div id="recoveryModal" class="recovery-modal" hidden>
+        <div class="recovery-modal-content">
+            <h2 id="recoveryModalTitle">Recovery</h2>
+            <p id="recoveryModalText" class="form-intro"></p>
+            <input type="email" id="recoveryEmail" placeholder="Your account email" autocomplete="email">
+            <div class="recovery-modal-actions">
+                <button type="button" id="recoveryCancelBtn" class="recovery-btn-secondary">Cancel</button>
+                <button type="button" id="recoverySubmitBtn">Send email</button>
+            </div>
+        </div>
+    </div>
+
+{% include "footer.njk" %}
+
+    <script src="/javascript/common/ErrorHandlingHelper.js"></script>
+    <script src="/javascript/common/requestHandler.js"></script>
+    <script src="/javascript/auth/login.js"></script>
+</body>
+</html>

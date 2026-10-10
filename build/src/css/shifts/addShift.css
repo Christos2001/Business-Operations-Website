@@ -1,0 +1,75 @@
+body.add-shift-page {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+body.add-shift-page .shift-page-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 80px 20px 20px;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+body.add-shift-page .containerShift {
+    width: 350px;
+    height: 540px;
+    min-height: 540px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.shift-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    width: 100%;
+}
+
+.day-select {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    background-color: #fff;
+}
+
+.day-select:focus {
+    border-color: #4e73df;
+    outline: none;
+    box-shadow: 0 0 5px #4e73df;
+}
+
+.shift-form input[type="date"],
+.shift-form input[type="time"] {
+    width: 100%;
+    max-width: 300px;
+    min-width: 180px;
+    box-sizing: border-box;
+}
+
+.shift-form input[type="date"] {
+    min-width: 220px;
+}
+
+.shift-submit {
+    background-color: aqua;
+    margin-top: auto;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.15s;
+}
+
+.shift-submit:hover {
+    background-color: #4dd0e1;
+    transform: translateY(-1px);
+}

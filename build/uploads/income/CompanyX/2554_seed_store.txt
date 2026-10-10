@@ -1,0 +1,5 @@
+﻿CompanyX - Income receipt (seed)
+Source: Physical store revenue
+Amount: EUR 77.48
+Date: 2026-06-30
+Reference: POS-20260630-748

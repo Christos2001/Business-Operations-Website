@@ -1,0 +1,5 @@
+﻿CompanyX - Income receipt (seed)
+Source: E-shop revenue
+Amount: EUR 126.42
+Date: 2026-06-30
+Reference: WEB-20260630-642

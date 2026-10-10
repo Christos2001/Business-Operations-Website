@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/transactions/addTransaction.css?1.2.8">
+    <link rel="stylesheet" href="/css/common/navbar.css">
+    <link rel="stylesheet" href="/css/common/footer.css">
+    <link rel="stylesheet" href="/css/common/spinner.css">
+
+    <title>addShift</title>
+</head>
+<body class="search-employee-page">
+     {% include "navbar.njk" %}
+
+  <div class="container-wrapper">
+    <h1 id="pageHeader">Add Shift</h1>
+
+    <div class="container search-employee-container">
+    <form action="" method="POST" class="search-employee-form">
+    <h2>Search employee</h2>
+    <input type="text" id="searchEmp" class="search-employee-input" autocomplete="off">
+    <div class="search-results-panel">
+      <div class="search-results-list" id="resultsDiv">
+        <p id="resultsMessage" class="search-results-message">0 results</p>
+      </div>
+    </div>
+  </form>
+      
+  </div>
+</div>
+
+{% include "footer.njk" %}
+</body>
+<script src="/javascript/common/jquery-3.7.1.min.js"></script>
+<script src="/javascript/common/ErrorHandlingHelper.js"></script>
+<script src="/javascript/common/requestHandler.js"></script>
+<script src="/javascript/common/navbar.js"></script>
+<script src="/javascript/profile/searchEmployee.js?1.2.12"></script>
+</html>

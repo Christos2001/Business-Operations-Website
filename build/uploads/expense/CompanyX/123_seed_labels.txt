@@ -1,0 +1,5 @@
+﻿CompanyX - Expense invoice (seed)
+Source: Thermal shipping labels
+Amount: EUR 188.20
+Date: 2026-06-20
+Notes: Printer media restock for shipping labels
