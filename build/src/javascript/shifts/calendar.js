@@ -92,22 +92,18 @@ async function loadShiftsForMonth(year, month) {
     const year_month_1 = `${year}-${String(month + 1).padStart(2, '0')}`;
     try {        
         if(results == null || !results.success){ //first fetch or previous fetch failed
-            console.log("1")
             const response = await fetch(`/php/shifts/getShiftsData.php?date=${year_month_1}&first=${true}`, {
                 credentials: 'same-origin',
                 headers: { Accept: 'application/json' }
             });
             results = await window.parseFetchJsonResponse(response);
-            console.log(results)
         }else if(!yMonths_Visited.has(year_month_1)){
-            console.log("2")
             const response = await fetch(`/php/shifts/getShiftsData.php?date=${year_month_1}&first=${false}`, {
                 credentials: 'same-origin',
                 headers: { Accept: 'application/json' }
             });
             let resultsFetch_not_First = await window.parseFetchJsonResponse(response); //gets only prev/next months shifts from employees.
             results.data.push(...resultsFetch_not_First.data)
-            console.log(results)
         }
 
         if (!results || results.denied) {
