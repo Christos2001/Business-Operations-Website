@@ -127,7 +127,7 @@ The manager always has full access. Employees only see/use what their flags allo
 
 - **Data is company-scoped**. Each user belongs to one company.
 - **Soft-delete on transactions**. Also **Transactions notes** appends lines `Created` / `Deleted` / `Retrieved` with name, id, timestamp. Delete is only **soft**; after **6 months** the transaction is **auto-deleted** on the next related request. Until then, retrieve restores the row and appends `Retrieved`.
-- **Employee notes — append only:** each new note is `(timestamp) Name Surname (id): (note)`. History is not rewritten; caps are 1000 chars per note / 10000 total.
+- **Employee notes — append only:** With integrity as goal implemented in each new note this boilerplate `(timestamp) Name Surname (id): (note)`, history is not rewritten. Caps are 1000 chars per note / 10000 total.
 - **Forecasts (all three models):**
   - Remaining months of this year, or a full future year. 
   - A complete forecast is used to generate a new forecast, needs **same** model (Growth↔Growth, Driver↔Driver, XGBoost↔XGBoost).
